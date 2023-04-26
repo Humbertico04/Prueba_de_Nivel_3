@@ -2,8 +2,9 @@ import random
 import math
 
 class Nodo:
-    def __init__(self, valor):
-        self.valor = valor
+    def __init__(self, valor_original, valor_redondeado):
+        self.valor_original = valor_original
+        self.valor_redondeado = valor_redondeado
         self.siguiente = None
 
 def leer_numero(ini, fin, mensaje):
@@ -19,7 +20,7 @@ def leer_numero(ini, fin, mensaje):
 
 def generador():
     numeros = leer_numero(1, 20, "¿Cuantos números quieres generar? [1-20]: ")
-    modo = leer_numero(1, 3, "¿Cómo quieres redondear los números? [1]Al alza [2]A la baja [3]Normal: ")
+    redondeo = leer_numero(1, 3, "¿Cómo quieres redondear los números? [1]Al alza [2]A la baja [3]Normal: ")
 
     primer_nodo = None
     nodo_anterior = None
@@ -27,16 +28,14 @@ def generador():
     for _ in range(numeros):
         num = random.uniform(0, 100)
         
-        if modo == 1:
+        if redondeo == 1:
             redondeado = math.ceil(num)
-        elif modo == 2:
+        elif redondeo == 2:
             redondeado = math.floor(num)
         else:
             redondeado = round(num)
 
-        print(f"Número original: {num}, Número redondeado: {redondeado}")
-        
-        nuevo_nodo = Nodo(redondeado)
+        nuevo_nodo = Nodo(num, redondeado)
         if primer_nodo is None:
             primer_nodo = nuevo_nodo
         else:
@@ -47,11 +46,19 @@ def generador():
 
 def imprimir_lista_numeros(nodo):
     while nodo is not None:
-        print(nodo.valor, end=" -> ")
+        print(f"Número original: {nodo.valor_original}, Número redondeado: {nodo.valor_redondeado}")
+        nodo = nodo.siguiente
+        
+def imprimir_lista_numeros_redondeados(nodo):
+    while nodo is not None:
+        print(nodo.valor_redondeado, end=" -> ")
         nodo = nodo.siguiente
     print("Fin")
 
 if __name__ == "__main__":
     lista_numeros = generador()
-    print("Lista de números redondeados:")
+    print("\nNúmeros originales y redondeados:")
     imprimir_lista_numeros(lista_numeros)
+    print("\nLista de números redondeados:")
+    imprimir_lista_numeros_redondeados(lista_numeros)
+
