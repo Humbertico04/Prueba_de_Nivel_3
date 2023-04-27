@@ -38,17 +38,21 @@ class Numero:
             return f"Error: Tipo de dato no válido"
 
 #calculos.py
-a = Numero(10)
-b = Numero(5)
-c = Numero(0)
-d = Numero("Hola")
+def calculos():
+    a = Numero(10)
+    b = Numero(5)
+    c = Numero(0)
+    d = Numero("Hola")
 
-suma_ab = d.suma(b)
-resta_bd = b.resta(d)
-producto_bb = b.producto(b)
-division_ac = a.division(c)
+    suma_ab = d.suma(b)
+    resta_bd = b.resta(d)
+    producto_bb = b.producto(b)
+    division_ac = a.division(c)
 
-print("{} + {} = {}".format(a, b, suma_ab))
-print("{} - {} = {}".format(b, d, resta_bd))
-print("{} * {} = {}".format(b, b, producto_bb))
-print("{} / {} = {}".format(a, c, division_ac))
+    print("{} + {} = {}".format(a, b, suma_ab))
+    print("{} - {} = {}".format(b, d, resta_bd))
+    print("{} * {} = {}".format(b, b, producto_bb))
+    print("{} / {} = {}".format(a, c, division_ac))
+
+if __name__ == "__main__":
+    calculos()

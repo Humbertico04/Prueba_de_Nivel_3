@@ -55,10 +55,12 @@ def imprimir_lista_numeros_redondeados(nodo):
         nodo = nodo.siguiente
     print("Fin")
 
-if __name__ == "__main__":
+def main():
     lista_numeros = generador()
     print("\nNúmeros originales y redondeados:")
     imprimir_lista_numeros(lista_numeros)
     print("\nLista de números redondeados:")
     imprimir_lista_numeros_redondeados(lista_numeros)
 
+if __name__ == "__main__":
+    main()
