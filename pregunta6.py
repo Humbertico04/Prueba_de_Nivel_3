@@ -63,7 +63,7 @@ def ordenar_pila(pila):
         carta = pila.desapilar()
         temp = Pila()
 
-        while not pila_ordenada.pila_vacia() and pila_ordenada.en_cima()[1] > carta[1]:
+        while not pila_ordenada.pila_vacia() and pila_ordenada.en_cima()[1] < carta[1]:
             temp.apilar(pila_ordenada.desapilar())
 
         pila_ordenada.apilar(carta)
