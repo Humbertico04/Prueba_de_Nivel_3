@@ -1,3 +1,4 @@
+# Versión optima (pero no dinámica)
 from operaciones import *
 
  

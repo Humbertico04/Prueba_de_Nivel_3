@@ -1,3 +1,4 @@
+# Versión optima (pero no dinámica)
 def suma(a, b):
     try:
         resultado = a + b
