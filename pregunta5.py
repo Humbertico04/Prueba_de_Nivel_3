@@ -232,6 +232,19 @@ class nodoArbol(object):
             print('    ' * nivel + str(raiz.info))
             nodoArbol.imprimir_arbol(raiz.izq, nivel + 1)
 
+    def contar_ocurrencias(raiz, valor):
+        if raiz is None:
+            return 0
+        
+        conteo_izquierdo = nodoArbol.contar_ocurrencias(raiz.izq, valor)
+        conteo_derecho = nodoArbol.contar_ocurrencias(raiz.der, valor)
+        
+        if raiz.info == valor:
+            return 1 + conteo_izquierdo + conteo_derecho
+        else:
+            return conteo_izquierdo + conteo_derecho
+
+
 import random
 
 def cargar_numeros_aleatorios(cantidad):
@@ -267,3 +280,7 @@ for num in eliminar:
 # Alturas de subárboles izquierdo y derecho
 print(f"\nAltura del subárbol izquierdo: {arbol.izq.altura}")
 print(f"Altura del subárbol derecho: {arbol.der.altura}")
+
+# Cantidad de ocurrencias de un elemento en el árbol
+elemento = random.randint(1, 1000)
+print(f"\nCantidad de ocurrencias de {elemento}: {arbol.contar_ocurrencias(elemento)}")
