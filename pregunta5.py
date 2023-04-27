@@ -257,7 +257,7 @@ def contar_pares_impares(nodo):
     
     return pares, impares
 
-if __name__ == "__main__":
+def main():
     # Insertar números en el árbol
     arbol = cargar_numeros_aleatorios(1000)
 
@@ -292,3 +292,6 @@ if __name__ == "__main__":
     pares, impares = contar_pares_impares(arbol)
     print(f"\nNúmeros pares en el árbol: {pares}")
     print(f"Números impares en el árbol: {impares}")
+
+if __name__ == "__main__":
+    main()
