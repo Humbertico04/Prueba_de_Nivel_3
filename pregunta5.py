@@ -244,13 +244,26 @@ def cargar_numeros_aleatorios(cantidad):
 # Insertar números en el árbol
 arbol = cargar_numeros_aleatorios(1000)
 
-# Barridos
-print("Barrido preorden:")
-arbol.preorden()
-print("\nBarrido inorden:")
-arbol.inorden()
-print("\nBarrido postorden:")
-arbol.postorden()
-print("\nBarrido por nivel:")
-arbol.por_nivel()
 
+# # Barridos
+# print("Barrido preorden:")
+arbol.preorden()
+# print("\nBarrido inorden:")
+# arbol.inorden()
+# print("\nBarrido postorden:")
+# arbol.postorden()
+# print("\nBarrido por nivel:")
+# arbol.por_nivel()
+
+# Buscar un número en el árbol
+busqueda = random.randint(1, 1000)
+print(f"\n¿Está el número {busqueda} en el árbol?:", "Sí" if arbol.buscar(busqueda) else "No")
+
+# Eliminar tres valores del árbol
+eliminar = [10, 20, 30]
+for num in eliminar:
+    arbol.eliminar_nodo(num)
+
+# Alturas de subárboles izquierdo y derecho
+print(f"\nAltura del subárbol izquierdo: {arbol.izq.altura}")
+print(f"Altura del subárbol derecho: {arbol.der.altura}")
