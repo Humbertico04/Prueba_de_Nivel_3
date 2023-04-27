@@ -48,18 +48,6 @@ class Cola(object):
         dato = Cola.atencion(cola)
         Cola.arribo(cola, dato)
         return dato
-    
-    def barrido(cola):
-        """Muestra el contenido de una cola sin perder datos"""
-        caux = Cola()
-        while (not Cola.cola_vacia(cola)):
-            dato = Cola.atencion(cola)
-            print(dato)
-            Cola.arribo(caux, dato)
-        
-        while (not Cola.cola_vacia(caux)):
-            dato = Cola.atencion(caux)
-            Cola.arribo(cola, dato)
 
     def barrido(cola):
         """Muestra el contenido de una cola sin perder datos"""
@@ -244,43 +232,63 @@ class nodoArbol(object):
         else:
             return conteo_izquierdo + conteo_derecho
 
-
 import random
 
 def cargar_numeros_aleatorios(cantidad):
     arbol = nodoArbol(random.randint(1, 1000))
     for _ in range(cantidad-1):
-        arbol.insertar_nodo(random.randint(1, 1000))
+        arbol = arbol.insertar_nodo(random.randint(1, 1000))
     return arbol
 
+def contar_pares_impares(nodo):
+    if nodo is None:
+        return 0, 0
+    
+    pares, impares = contar_pares_impares(nodo.izq)
+    pares_r, impares_r = contar_pares_impares(nodo.der)
+    
+    pares += pares_r
+    impares += impares_r
+    
+    if nodo.info % 2 == 0:
+        pares += 1
+    else:
+        impares += 1
+    
+    return pares, impares
 
-# Insertar números en el árbol
-arbol = cargar_numeros_aleatorios(1000)
+if __name__ == "__main__":
+    # Insertar números en el árbol
+    arbol = cargar_numeros_aleatorios(1000)
 
+    # Barridos
+    print("Barrido preorden:")
+    arbol.preorden()
+    print("\nBarrido inorden:")
+    arbol.inorden()
+    print("\nBarrido postorden:")
+    arbol.postorden()
+    print("\nBarrido por nivel:")
+    arbol.por_nivel()
 
-# # Barridos
-# print("Barrido preorden:")
-arbol.preorden()
-# print("\nBarrido inorden:")
-# arbol.inorden()
-# print("\nBarrido postorden:")
-# arbol.postorden()
-# print("\nBarrido por nivel:")
-# arbol.por_nivel()
+    # Buscar un número en el árbol
+    busqueda = random.randint(1, 1000)
+    print(f"\n¿Está el número {busqueda} en el árbol?:", "Sí" if arbol.buscar(busqueda) else "No")
 
-# Buscar un número en el árbol
-busqueda = random.randint(1, 1000)
-print(f"\n¿Está el número {busqueda} en el árbol?:", "Sí" if arbol.buscar(busqueda) else "No")
+    # Eliminar tres valores del árbol
+    eliminar = [10, 20, 30]
+    for num in eliminar:
+        arbol.eliminar_nodo(num)
 
-# Eliminar tres valores del árbol
-eliminar = [10, 20, 30]
-for num in eliminar:
-    arbol.eliminar_nodo(num)
+    # Alturas de subárboles izquierdo y derecho
+    print(f"\nAltura del subárbol izquierdo: {arbol.izq.altura}")
+    print(f"Altura del subárbol derecho: {arbol.der.altura}")
 
-# Alturas de subárboles izquierdo y derecho
-print(f"\nAltura del subárbol izquierdo: {arbol.izq.altura}")
-print(f"Altura del subárbol derecho: {arbol.der.altura}")
+    # Cantidad de ocurrencias de un elemento en el árbol
+    elemento = random.randint(1, 1000)
+    print(f"\nCantidad de ocurrencias de {elemento}: {arbol.contar_ocurrencias(elemento)}")
 
-# Cantidad de ocurrencias de un elemento en el árbol
-elemento = random.randint(1, 1000)
-print(f"\nCantidad de ocurrencias de {elemento}: {arbol.contar_ocurrencias(elemento)}")
+    # Contar números pares e impares en el árbol
+    pares, impares = contar_pares_impares(arbol)
+    print(f"\nNúmeros pares en el árbol: {pares}")
+    print(f"Números impares en el árbol: {impares}")
